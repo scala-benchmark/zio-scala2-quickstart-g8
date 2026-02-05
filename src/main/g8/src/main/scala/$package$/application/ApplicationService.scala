@@ -3,6 +3,7 @@ package $package$.application
 import zio.ZIO
 
 import $package$.domain._
+import $package$.infrastructure.{ CookieSignerService, PasswordHashService }
 
 object ApplicationService {
 
@@ -45,4 +46,12 @@ object ApplicationService {
     result.unsome
   }
 
+  def signSessionCookie(message: String): ZIO[Any, Throwable, String] =
+    ZIO.attempt {
+      val key = CookieSignerService.defaultKey
+      CookieSignerService.sign(message, key)
+    }
+
+  def hashPasswordForAuth(password: String): ZIO[Any, Throwable, String] =
+    ZIO.attempt(PasswordHashService.hashPassword(password))
 }
