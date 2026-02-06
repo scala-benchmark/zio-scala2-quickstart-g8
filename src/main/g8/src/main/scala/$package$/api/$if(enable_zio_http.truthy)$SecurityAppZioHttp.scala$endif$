@@ -1,0 +1,8 @@
+package $package$.api
+
+import zio.http._
+
+object SecurityApp extends JsonSupport {
+
+  val app = SecurityRoutes.app
+}

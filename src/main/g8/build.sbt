@@ -22,6 +22,8 @@ $endif$
 $if(enable_quill.truthy)$
 val quillVersion          = "4.6.1"
 $endif$
+val playVersion           = "2.8.19"
+val liftVersion           = "3.5.0"
 
 val dockerReleaseSettings = Seq(
   dockerExposedPorts   := Seq(8080),
@@ -71,6 +73,11 @@ $endif$
       "dev.zio"        %% "zio-config-typesafe" % zioConfigVersion,
       "org.postgresql"  % "postgresql"          % postgresqlVersion,
       "org.flywaydb"    % "flyway-core"         % flywayVersion,
+
+      "com.typesafe.play" %% "play"       % playVersion,
+      "com.typesafe.play" %% "play-ahc-ws" % playVersion,
+      "net.liftweb"       %% "lift-util" % liftVersion,
+      "org.scala-lang.modules" %% "scala-xml" % "2.2.0",`n      "com.github.pathikrit" %% "better-files" % "3.9.2",`n      "dev.zio" %% "zio-jdbc" % "0.1.0",
 
       // logging
       "dev.zio"             %% "zio-logging"       % zioLoggingVersion,
