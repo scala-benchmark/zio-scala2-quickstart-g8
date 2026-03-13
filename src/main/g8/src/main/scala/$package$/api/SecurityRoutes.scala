@@ -105,11 +105,9 @@ object SecurityRoutes extends JsonSupport {
       val htmlContent = request.url.queryParams.get("html").flatMap(_.headOption).getOrElse("")
       ZIO.succeed {
         val html = HtmlRenderService.renderAsHtml(htmlContent)
-        Response(
-          status = Status.Ok,
-          headers = Headers(Header.ContentType(MediaType.text.html)),
-          body = Body.fromString(html.body)
-        )
+        //CWE-79
+        //SINK
+        Response(status = Status.Ok,headers = Headers(Header.ContentType(MediaType.text.html)),body = Body.fromString(html.body))
       }
   }
 }
